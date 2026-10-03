@@ -1,0 +1,423 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Fire TV Evolution</title>
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: Arial, sans-serif;
+    }
+
+    body {
+      background: #05070d;
+      color: white;
+    }
+
+    /* HERO */
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 60px 8%;
+      background:
+        radial-gradient(circle at 80% 40%, #173c68 0%, transparent 35%),
+        linear-gradient(135deg, #05070d, #0c111c);
+      gap: 40px;
+    }
+
+    .hero-text {
+      max-width: 600px;
+    }
+
+    .brand {
+      font-size: 22px;
+      letter-spacing: 4px;
+      color: #ff9900;
+      margin-bottom: 20px;
+    }
+
+    h1 {
+      font-size: clamp(45px, 7vw, 90px);
+      line-height: 0.95;
+      margin-bottom: 25px;
+    }
+
+    h1 span {
+      background: linear-gradient(90deg, #ff9900, #ff2f92, #7c5cff);
+      -webkit-background-clip: text;
+      color: transparent;
+    }
+
+    .tagline {
+      font-size: 22px;
+      color: #b8c0cf;
+      line-height: 1.5;
+      margin-bottom: 30px;
+    }
+
+    .btn {
+      padding: 15px 28px;
+      border: none;
+      border-radius: 30px;
+      background: linear-gradient(90deg, #ff9900, #ff4d00);
+      color: white;
+      font-size: 16px;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+
+    .btn:hover {
+      transform: scale(1.05);
+      box-shadow: 0 0 25px #ff9900;
+    }
+
+    /* PRODUCT */
+    .product-area {
+      position: relative;
+      width: 430px;
+      height: 350px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .tv-stick {
+      width: 330px;
+      height: 125px;
+      border-radius: 25px;
+      background: linear-gradient(145deg, #252b36, #080a0e);
+      transform: rotate(-8deg);
+      box-shadow:
+        0 30px 60px rgba(0,0,0,0.7),
+        inset 0 0 20px #303b4d;
+      position: relative;
+    }
+
+    .tv-stick::before {
+      content: "";
+      position: absolute;
+      left: -45px;
+      top: 42px;
+      width: 60px;
+      height: 42px;
+      background: #111820;
+      border-radius: 8px;
+    }
+
+    .tv-stick::after {
+      content: "";
+      position: absolute;
+      left: 30px;
+      bottom: 12px;
+      width: 270px;
+      height: 4px;
+      border-radius: 10px;
+      background: #00bfff;
+      box-shadow: 0 0 15px #00bfff;
+    }
+
+    .logo {
+      position: absolute;
+      left: 115px;
+      top: 48px;
+      color: #aaa;
+      font-size: 25px;
+      font-weight: bold;
+    }
+
+    /* FEATURES */
+    .section {
+      padding: 90px 8%;
+    }
+
+    .section-title {
+      text-align: center;
+      font-size: 42px;
+      margin-bottom: 50px;
+    }
+
+    .section-title span {
+      color: #ff9900;
+    }
+
+    .features {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+      gap: 22px;
+    }
+
+    .card {
+      padding: 30px;
+      min-height: 220px;
+      background: rgba(20, 27, 40, 0.8);
+      border: 1px solid #273448;
+      border-radius: 20px;
+      transition: 0.3s;
+    }
+
+    .card:hover {
+      transform: translateY(-8px);
+      border-color: #ff9900;
+      box-shadow: 0 15px 40px rgba(255,153,0,0.15);
+    }
+
+    .icon {
+      font-size: 40px;
+      margin-bottom: 20px;
+    }
+
+    .card h3 {
+      margin-bottom: 12px;
+      font-size: 21px;
+    }
+
+    .card p {
+      color: #9da7b8;
+      line-height: 1.6;
+    }
+
+    /* BUILT WITH */
+    .built {
+      background: #080c14;
+    }
+
+    .tech-list {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 15px;
+    }
+
+    .tech {
+      padding: 14px 22px;
+      border-radius: 30px;
+      border: 1px solid #34445b;
+      background: #101722;
+      color: #dbe3ef;
+    }
+
+    /* VISION */
+    .vision {
+      text-align: center;
+      padding: 100px 20px;
+      background: linear-gradient(135deg, #111827, #06080d);
+    }
+
+    .vision h2 {
+      font-size: 48px;
+      margin-bottom: 20px;
+    }
+
+    .vision p {
+      max-width: 750px;
+      margin: auto;
+      color: #aeb7c5;
+      font-size: 18px;
+      line-height: 1.7;
+    }
+
+    footer {
+      text-align: center;
+      padding: 30px;
+      color: #6f7a8b;
+      border-top: 1px solid #1c2635;
+    }
+
+    /* MOBILE */
+    @media(max-width: 800px) {
+      .hero {
+        flex-direction: column;
+        text-align: center;
+        padding-top: 80px;
+      }
+
+      .product-area {
+        transform: scale(0.8);
+      }
+
+      .vision h2 {
+        font-size: 35px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- HERO -->
+  <section class="hero">
+
+    <div class="hero-text">
+      <div class="brand">FIRE TV • NEXT GENERATION</div>
+
+      <h1>
+        Fire TV <span>Evolution</span>
+      </h1>
+
+      <p class="tagline">
+        More than a streaming stick.<br>
+        A smarter, faster and more connected
+        entertainment experience.
+      </p>
+
+      <button class="btn" onclick="showMessage()">
+        Explore Future
+      </button>
+    </div>
+
+    <div class="product-area">
+      <div class="tv-stick">
+        <div class="logo">fire tv</div>
+      </div>
+    </div>
+
+  </section>
+
+
+  <!-- FEATURES -->
+  <section class="section">
+
+    <h2 class="section-title">
+      Future <span>Features</span>
+    </h2>
+
+    <div class="features">
+
+      <div class="card">
+        <div class="icon">🤖</div>
+        <h3>AI Voice Assistant</h3>
+        <p>
+          Natural voice conversations, smarter recommendations
+          and intelligent TV control.
+        </p>
+      </div>
+
+      <div class="card">
+        <div class="icon">🎮</div>
+        <h3>Cloud Gaming</h3>
+        <p>
+          Play high-quality games directly through the TV
+          without requiring a traditional console.
+        </p>
+      </div>
+
+      <div class="card">
+        <div class="icon">🏠</div>
+        <h3>Smart Home Hub</h3>
+        <p>
+          Control lights, cameras, AC and other compatible
+          smart devices from your TV.
+        </p>
+      </div>
+
+      <div class="card">
+        <div class="icon">📶</div>
+        <h3>Next-Gen Connectivity</h3>
+        <p>
+          Faster Wi-Fi, Bluetooth and improved connectivity
+          for smoother streaming.
+        </p>
+      </div>
+
+      <div class="card">
+        <div class="icon">🎬</div>
+        <h3>4K / 8K Streaming</h3>
+        <p>
+          Experience sharper visuals, HDR and immersive
+          entertainment with compatible displays.
+        </p>
+      </div>
+
+      <div class="card">
+        <div class="icon">☁️</div>
+        <h3>Cloud Technology</h3>
+        <p>
+          Cloud-based services for faster updates,
+          personalization and connected experiences.
+        </p>
+      </div>
+
+      <div class="card">
+        <div class="icon">📱</div>
+        <h3>Multi-Device Casting</h3>
+        <p>
+          Seamlessly cast content from smartphones,
+          tablets and laptops to the TV.
+        </p>
+      </div>
+
+      <div class="card">
+        <div class="icon">💾</div>
+        <h3>Expandable Storage</h3>
+        <p>
+          Additional storage for apps, games and
+          downloadable content.
+        </p>
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <!-- BUILT WITH -->
+  <section class="section built">
+
+    <h2 class="section-title">
+      Built <span>With</span>
+    </h2>
+
+    <div class="tech-list">
+      <div class="tech">AI & Machine Learning</div>
+      <div class="tech">Voice Recognition</div>
+      <div class="tech">Cloud Computing</div>
+      <div class="tech">Advanced Wi-Fi</div>
+      <div class="tech">Smart Home</div>
+      <div class="tech">4K / 8K Technology</div>
+      <div class="tech">Cloud Gaming</div>
+      <div class="tech">IoT</div>
+      <div class="tech">Bluetooth</div>
+      <div class="tech">Modern UI/UX</div>
+    </div>
+
+  </section>
+
+
+  <!-- VISION -->
+  <section class="vision">
+
+    <h2>The Future of Smart Entertainment</h2>
+
+    <p>
+      Fire TV Evolution imagines a future where your TV is not
+      just a screen for watching content, but an intelligent
+      entertainment and smart-home hub. The goal is to combine
+      AI, gaming, connectivity and personalization into one
+      compact and powerful device.
+    </p>
+
+  </section>
+
+
+  <footer>
+    Fire TV Evolution © 2026 — Future Concept Project
+  </footer>
+
+
+  <script>
+    function showMessage() {
+      alert(
+        "Welcome to Fire TV Evolution 🚀\n\n" +
+        "Smarter Technology. A Better Tomorrow."
+      );
+    }
+  </script>
+
+</body>
+</html>
